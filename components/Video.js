@@ -188,7 +188,9 @@ class Video extends Component {
   }
 
   BackHandler() {
+    
     if (this.state.fullScreen) {
+      console.log('---------------------BackHandler')
       this.setState({ fullScreen: false }, () => {
         this.animToInline()
         this.props.onFullScreen(this.state.fullScreen)
@@ -354,7 +356,8 @@ class Video extends Component {
       playInBackground,
       playWhenInactive,
       controlDuration,
-      disableSeek
+      disableSeek,
+      onLogoPress,
     } = this.props
 
     const inline = {
@@ -422,6 +425,7 @@ class Video extends Component {
           title={title}
           more={!!onMorePress}
           onMorePress={() => onMorePress()}
+          onLogoPress={() => onLogoPress()}
           theme={setTheme}
           inlineOnly={inlineOnly}
           controlDuration={controlDuration}
@@ -468,6 +472,7 @@ Video.propTypes = {
   onError: PropTypes.func,
   onProgress: PropTypes.func,
   onMorePress: PropTypes.func,
+  onLogoPress: PropTypes.func,
   onFullScreen: PropTypes.func,
   onTimedMetadata: PropTypes.func,
   rate: PropTypes.number,
@@ -498,6 +503,7 @@ Video.defaultProps = {
   onError: () => {},
   onProgress: () => {},
   onMorePress: undefined,
+  onLogoPress: () => {},
   onFullScreen: () => {},
   onTimedMetadata: () => {},
   rate: 1,
