@@ -128,7 +128,8 @@ class Controls extends Component {
       duration,
       theme,
       inlineOnly,
-      disableSeek
+      disableSeek,
+      onLogoPress,
     } = this.props
 
     const { center, ...controlBar } = theme
@@ -139,6 +140,7 @@ class Controls extends Component {
           <TopBar
             title={title}
             logo={logo}
+            onLogoPress={() => onLogoPress()}
             more={more}
             onMorePress={() => onMorePress()}
             theme={{ title: theme.title, more: theme.more }}
