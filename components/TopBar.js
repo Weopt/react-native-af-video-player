@@ -5,7 +5,8 @@ import {
   View,
   StyleSheet,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient'
@@ -44,12 +45,13 @@ const TopBar = (props) => {
     more,
     title,
     theme,
-    onMorePress
+    onMorePress,
+    onLogoPress,
   } = props
   return (
     <LinearGradient colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0)']} style={styles.container}>
       <View style={styles.row}>
-        { logo && <Image style={styles.logo} resizeMode="contain" {...checkSource(logo)} />}
+        { logo && <TouchableOpacity onPress={() => onLogoPress()}><Image style={styles.logo} resizeMode="contain" {...checkSource(logo)} /></TouchableOpacity>}
         <Text
           style={[styles.title, { color: theme.title }]}
           numberOfLines={1}
@@ -78,7 +80,8 @@ TopBar.propTypes = {
   logo: PropTypes.string.isRequired,
   more: PropTypes.bool.isRequired,
   onMorePress: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  onLogoPress: PropTypes.func.isRequired,
 }
 
 export { TopBar }
