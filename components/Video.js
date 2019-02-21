@@ -188,9 +188,7 @@ class Video extends Component {
   }
 
   BackHandler() {
-    
     if (this.state.fullScreen) {
-      console.log('---------------------BackHandler')
       this.setState({ fullScreen: false }, () => {
         this.animToInline()
         this.props.onFullScreen(this.state.fullScreen)
