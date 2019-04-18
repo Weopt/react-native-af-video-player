@@ -1,40 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
-import { ToggleIcon, Time, Scrubber } from './'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View } from 'react-native';
+import { ToggleIcon, Time, Scrubber } from './';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 35,
     alignSelf: 'stretch',
-    justifyContent: 'flex-end'
-  }
-})
+    justifyContent: 'flex-end',
+  },
+});
 
 const ControlBar = (props) => {
   const {
-    onSeek,
-    onSeekRelease,
-    progress,
-    currentTime,
-    duration,
-    muted,
-    fullscreen,
-    theme,
-    inlineOnly,
-    disableSeek,
-  } = props
+    onSeek, onSeekRelease, progress, currentTime, duration, muted, fullscreen, theme, inlineOnly, disableSeek,
+  } = props;
   return (
-    <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.75)']} style={styles.container}>
+    <View style={styles.container}>
       <Time time={currentTime} theme={theme.seconds} />
-      {!disableSeek && <Scrubber
-        onSeek={pos => onSeek(pos)}
-        onSeekRelease={pos => onSeekRelease(pos)}
-        progress={progress}
-        theme={{ scrubberThumb: theme.scrubberThumb, scrubberBar: theme.scrubberBar }}
-      />}
+      {!disableSeek && (
+        <Scrubber
+          onSeek={pos => onSeek(pos)}
+          onSeekRelease={pos => onSeekRelease(pos)}
+          progress={progress}
+          theme={{ scrubberThumb: theme.scrubberThumb, scrubberBar: theme.scrubberBar }}
+        />
+      )}
       <ToggleIcon
         paddingLeft
         theme={theme.volume}
@@ -45,18 +37,19 @@ const ControlBar = (props) => {
         size={20}
       />
       {!disableSeek && <Time time={duration} theme={theme.duration} />}
-      { !inlineOnly &&
-      <ToggleIcon
-        paddingRight
-        onPress={() => props.toggleFS()}
-        iconOff="fullscreen"
-        iconOn="fullscreen-exit"
-        isOn={fullscreen}
-        theme={theme.fullscreen}
-      />}
-    </LinearGradient>
-  )
-}
+      {!inlineOnly && (
+        <ToggleIcon
+          paddingRight
+          onPress={() => props.toggleFS()}
+          iconOff="fullscreen"
+          iconOn="fullscreen-exit"
+          isOn={fullscreen}
+          theme={theme.fullscreen}
+        />
+      )}
+    </View>
+  );
+};
 
 ControlBar.propTypes = {
   toggleFS: PropTypes.func.isRequired,
@@ -70,7 +63,7 @@ ControlBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
-  disableSeek:PropTypes.bool
-}
+  disableSeek: PropTypes.bool,
+};
 
-export { ControlBar }
+export { ControlBar };
