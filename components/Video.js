@@ -304,7 +304,7 @@ class Video extends Component {
       height: this.animInline,
       alignSelf: 'stretch',
     };
-    const textStyle = { color: 'white', padding: 10 };
+    const textStyle = { color: 'back', padding: 10 };
     return (
       <Animated.View
         style={[
@@ -319,7 +319,7 @@ class Video extends Component {
             this.setState({ renderError: false });
           }}
         >
-          <Icons name="replay" size={50} color="white" onPress={() => this.setState({ renderError: false })} />
+          <Icons name="replay" size={50} color="black" onPress={() => this.setState({ renderError: false })} />
         </TouchableOpacity>
       </Animated.View>
     );
